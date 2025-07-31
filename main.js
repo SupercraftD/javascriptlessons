@@ -1,5 +1,5 @@
 
-
+let format = "text";
 function switchAssignment(u,l){
   document.getElementById("assignmenttitle").innerHTML = `${u+1}.${l+1}: ${units[u][l]}`;
   document.getElementById("header").innerHTML = lessonContents[units[u][l]].header;
@@ -14,10 +14,19 @@ function switchAssignment(u,l){
   if (lessonContents[units[u][l]].noExample){
     document.getElementById("code").value = lessonContents[units[u][l]].code;
   }else if (lessonContents[units[u][l]].code != ""){
-    document.getElementById("code").value = `###### EXAMPLE CODE #####\n`+lessonContents[units[u][l]].code+`\n\n###### WRITE YOUR CODE HERE #####\n`;
+    document.getElementById("code").value = `//###### EXAMPLE CODE #####\n`+lessonContents[units[u][l]].code+`\n\n//###### WRITE YOUR CODE HERE #####\n`;
   }else{
-    document.getElementById("code").value = `###### WRITE YOUR CODE HERE #####\n`;
+    document.getElementById("code").value = `//###### WRITE YOUR CODE HERE #####\n`;
   }
+
+  if (lessonContents[units[u][l]].format == "text"){
+    document.getElementById("console").style.display = "block";
+    format = "text";
+  }else{
+    document.getElementById("console").style.display = "none";
+    format = "graphics";
+  }
+
 }
 
 for (let unit in units){
@@ -86,20 +95,15 @@ textarea.addEventListener("keydown", function(e) {
 });
 
 
-// Utility delay
-function delay(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function reset(){
   document.getElementById("console").textContent = ""
 }
-var defaultTimeLimit = Sk.execLimit;
-//document.getElementById("stopbtn").disabled = true;
+let worker
 document.getElementById("stopbtn").addEventListener('click', () => {
-    stopPython();
+    worker.terminate();
     document.getElementById("console").textContent += "\nExecution stopped.";
 });
+
 // Run button event
 for (let element of document.getElementsByClassName("run-btn")){
   element.addEventListener('click', async () => {
@@ -108,7 +112,6 @@ for (let element of document.getElementsByClassName("run-btn")){
       e.disabled=true;
     }
     document.getElementById("stopbtn").disabled = false;
-    Sk.execLimit = defaultTimeLimit; // Reset execution limit
     try {
       reset();
       runCode();
@@ -120,47 +123,58 @@ for (let element of document.getElementsByClassName("run-btn")){
     }
   });
 }
-function outf(text) {
-    document.getElementById("console").textContent += text;
-}
 
-function builtinRead(x) {
-    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined) {
-        throw "File not found: '" + x + "'";
-    }
-    return Sk.builtinFiles["files"][x];
-}
 
+/*
 async function runCode() {
     const prog = document.getElementById("code").value;
     document.getElementById("console").textContent = ""; // clear output
 
-    Sk.configure({
-        output: outf,
-        read: builtinRead,
-        inputfun: function (promptText) {
-          console.log(promptText)
-            return new Promise((resolve) => {
-                const userInput = prompt(promptText);
-                resolve(userInput);
-            });
-        },
-        inputfunTakesPrompt: true,
-        killableWhile: true,
-        killableFor: true,
-
-    });
-
-    Sk.misceval.asyncToPromise(() => Sk.importMainWithBody("<stdin>", false, prog, true))
-        .catch(err => outf("\n" + err.toString()));
-}
-
-function stopPython() {
-    Sk.execLimit = 1;
-    Sk.timeoutMsg = function() {
-        Sk.execLimit = defaultTimeLimit;
-        return "Stopped (not really a Timeout)";
+    if (format == "text"){
+      eval(`console.log = function(x){
+          document.getElementById("console").textContent += x + "\\n";
+        }`+prog)
     }
+
 }
+*/
+
+async function runCode() {
+    reset();
+    const userCode = document.getElementById("code").value;
+
+    const blob = new Blob([`
+        onmessage = function(e) {
+          const console = { log: (msg) => postMessage({ type: 'log', msg }) };
+          try {
+            eval(e.data);
+            postMessage({ type: 'done' });
+          } catch (err) {
+            postMessage({ type: 'error', msg: err.toString() });
+          }
+        };
+    `], { type: 'application/javascript' });
+
+    worker = new Worker(URL.createObjectURL(blob));
+
+    /*const timeout = setTimeout(() => {
+        worker.terminate();
+        document.getElementById("console").textContent += "\n⏱ Execution timed out!";
+    }, 1000);*/
+
+    worker.onmessage = (e) => {
+        if (e.data.type === 'log') {
+            document.getElementById("console").textContent += e.data.msg + "\n";
+        } else if (e.data.type === 'error') {
+            clearTimeout(timeout);
+            document.getElementById("console").textContent += "⚠️ Error: " + e.data.msg + "\n";
+        } else if (e.data.type === 'done') {
+            clearTimeout(timeout);
+        }
+    };
+
+    worker.postMessage(userCode);
+}
+
 // Start fresh
 reset();
