@@ -2,7 +2,7 @@
 let format = "text";
 function switchAssignment(u,l){
   document.getElementById("assignmenttitle").innerHTML = `${u+1}.${l+1}: ${units[u][l]}`;
-  document.getElementById("header").innerHTML = lessonContents[units[u][l]].header;
+  document.getElementById("header").innerHTML = lessonContents[units[u][l]].header+`<br><br><b>Your Task:</b> `+lessonContents[units[u][l]].task;
   
   if (lessonContents[units[u][l]].img){
     document.getElementById("img").src = lessonContents[units[u][l]].img;
@@ -14,7 +14,7 @@ function switchAssignment(u,l){
   if (lessonContents[units[u][l]].noExample){
     document.getElementById("code").value = lessonContents[units[u][l]].code;
   }else if (lessonContents[units[u][l]].code != ""){
-    document.getElementById("code").value = `//###### EXAMPLE CODE #####\n`+lessonContents[units[u][l]].code+`\n\n//###### WRITE YOUR CODE HERE #####\n`;
+    document.getElementById("code").value = `//###### EXAMPLE CODE #####\n`+lessonContents[units[u][l]].code+`\n\n//####### YOUR ASSIGNMENT: `+lessonContents[units[u][l]].task+`\n\n//###### WRITE YOUR CODE HERE #####\n`;
   }else{
     document.getElementById("code").value = `//###### WRITE YOUR CODE HERE #####\n`;
   }
