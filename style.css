@@ -1,0 +1,234 @@
+  /* Layout */
+  body, html {
+    margin: 0; padding: 0; height: 100vh; font-family: 'Arial';
+    width:100%;
+    background: #ffffff;
+    display: flex;
+  }
+  #container {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+  }
+
+  .panel {
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  /* Left: instructions */
+  #instructions {
+    width: 25%;
+    background: #2c3e50;
+    color: #ecf0f1;
+    border-right: 2px solid #34495e;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    font-size: 1.4rem;
+  }
+  #instructions h2 {
+    margin-top: 0;
+    font-weight: 700;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 10px;
+  }
+  #instructions p {
+    line-height: 1.5;
+  }
+  #instructions img{
+    margin-bottom: 50px;
+  }
+
+  #img{
+    width:100%;
+  }
+
+  /* Middle: code editor */
+  #header{
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px;
+    border-bottom: 2px solid #34495e;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    max-height: 40%;
+    overflow-y: auto;
+  }
+
+  #header ul{
+    padding-left: 20px;
+    line-height: 1.6;
+  }
+  #code-editor {
+    width: 40%;
+    background: white;
+    border-right: 2px solid #bdc3c7;
+    display: flex;
+    flex-direction: column;
+  }
+  #code-editor textarea {
+    flex-grow: 1;
+    font-family: 'Source Code Pro', monospace, monospace;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    border: none;
+    padding: 15px;
+    resize: none;
+    outline: none;
+    background: #fefefe;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  #code-editor .hint {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    background: #ecf0f1;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  .run-btn {
+    background: #27ae60;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .run-btn:hover:not(:disabled) {
+    background: #2ecc71;
+  }
+  .run-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+  }
+  .stop-btn {
+    background: #c0392b;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-left: 10px;
+  }
+  .stop-btn:hover:not(:disabled) {
+    background: #e74c3c;
+  }
+  .stop-btn:disabled {
+    background: #95a5a6;
+    cursor: not-allowed;
+  }
+  #dimensioninputs{
+    display:flex;
+    justify-content: space-around;
+    margin:10px;
+  }
+  .inputset{
+    font-family: 'Arial';
+    font-size: 1.2rem;
+    color: #000000;
+    background: #ecf0f1;
+    border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  /* Right: grid */
+  #grid-container {
+    width: 35%;
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    overflow-x: auto;
+  }
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 4px;
+    background: #ecf0f1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    margin-left:20px;
+  }
+  .cell {
+    background: white;
+    border-radius: 6px;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    user-select: none;
+  }
+  .turtle {
+    font-size: 26px;
+    transition: background-color 0.3s ease;
+    background-color: #27ae60;
+    border-radius: 6px;
+    color: white;
+  }
+  #status {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #34495e;
+    min-height: 22px;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  #console{
+    width:100%;
+    flex-grow: 1;
+    font-family: 'Source Code Pro', monospace, monospace;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    border: none;
+    resize: none;
+    outline: none;
+    background: #9b9b9b;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    padding:10px;
+  }
+
+.unit{
+    background-color: #95a5a6;
+    color:black;
+    text-align: center;
+    padding:10px;
+    border-radius: 20px;
+    font-size: 1.6rem;
+    margin:15px;
+    cursor:pointer;
+}
+
+.unit:hover{
+    background-color: #889191;
+}
+
+.lessons{
+    text-align: left;
+}
+
+.hiddenlessons{
+    display:none;
+}
+.visiblelessons{
+    display:block;
+}
+hr{
+    min-width: 100%;
+}
