@@ -144,17 +144,51 @@ async function runCode() {
     const userCode = document.getElementById("code").value;
 
     const blob = new Blob([`
+        let pendingPromptResolves = [];
+
         onmessage = function(e) {
-          const console = { log: (msg) => postMessage({ type: 'log', msg }) };
-          try {
-            eval(e.data);
-            postMessage({ type: 'done' });
-          } catch (err) {
-            postMessage({ type: 'error', msg: err.toString() });
-          }
+            if (e.data.type === "code") {
+                const console = {
+                    log: (msg) => {
+                        if (typeof msg === "object" && typeof msg.then === "function") {
+                            postMessage({ type: 'log', msg: "[Promise]" });
+                        } else if (typeof msg === "object") {
+                            try {
+                                postMessage({ type: 'log', msg: JSON.stringify(msg) });
+                            } catch {
+                                postMessage({ type: 'log', msg: "[object]" });
+                            }
+                        } else {
+                            postMessage({ type: 'log', msg: String(msg) });
+                        }
+                    }
+                };
+
+                function prompt(msg) {
+                    return new Promise((resolve) => {
+                        const id = pendingPromptResolves.length;
+                        pendingPromptResolves[id] = resolve;
+                        postMessage({ type: 'prompt', msg, id });
+                    });
+                }
+
+                (async () => {
+                    try {
+                        await eval("(async () => {" + e.data.code + "})()");
+                        postMessage({ type: 'done' });
+                    } catch (err) {
+                        postMessage({ type: 'error', msg: err.toString() });
+                    }
+                })();
+            } else if (e.data.type === "prompt-response") {
+                const resolve = pendingPromptResolves[e.data.id];
+                if (resolve) {
+                    resolve(e.data.response);
+                    delete pendingPromptResolves[e.data.id];
+                }
+            }
         };
     `], { type: 'application/javascript' });
-
     worker = new Worker(URL.createObjectURL(blob));
 
     /*const timeout = setTimeout(() => {
@@ -162,18 +196,19 @@ async function runCode() {
         document.getElementById("console").textContent += "\n⏱ Execution timed out!";
     }, 1000);*/
 
-    worker.onmessage = (e) => {
+    worker.onmessage = async (e) => {
         if (e.data.type === 'log') {
             document.getElementById("console").textContent += e.data.msg + "\n";
         } else if (e.data.type === 'error') {
-            clearTimeout(timeout);
             document.getElementById("console").textContent += "⚠️ Error: " + e.data.msg + "\n";
-        } else if (e.data.type === 'done') {
-            clearTimeout(timeout);
+        } else if (e.data.type === 'prompt') {
+            const response = window.prompt(e.data.msg);
+            worker.postMessage({ type: 'prompt-response', id: e.data.id, response });
         }
     };
 
-    worker.postMessage(userCode);
+    let transformed = userCode.replace(/(?<![\w$])prompt\s*\(/g, 'await prompt(')
+    worker.postMessage({ type:"code", code:transformed});
 }
 
 // Start fresh
