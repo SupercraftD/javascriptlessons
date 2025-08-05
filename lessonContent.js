@@ -1,6 +1,7 @@
-let unitNames = ["Basic JS and Console Interaction"]
+let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions"]
 let units = [
-    ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"]
+    ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
+    ["Booleans and Operators","If/Else Statements","Switch Statements"]
 ];
 
 
@@ -90,6 +91,109 @@ console.log("This line runs!");
 // console.log("This line is commented out and won’t run.");`,
     
         format: "text"
+    },
+
+    "Booleans and Operators":{
+        header: `Booleans are values that can only be <code>true</code> or <code>false</code>. They are often used to decide what parts of code should run.<br><br>
+You can compare values with comparison operators:
+<ul>
+<li><code>==</code> — equal to</li>
+<li><code>!=</code> — not equal to</li>
+<li><code>&gt;</code> — greater than</li>
+<li><code>&lt;</code> — less than</li>
+<li><code>&gt;=</code> — greater than or equal to</li>
+<li><code>&lt;=</code> — less than or equal to</li>
+</ul>
+Logical operators let you combine or change true/false values:
+<ul>
+<li><code>&&</code> — AND: true only if <i>both</i> sides are true</li>
+<li><code>||</code> — OR: true if <i>either</i> side is true</li>
+<li><code>!</code> — NOT: flips true to false and false to true</li>
+</ul>`,
+    
+        task: `Ask the user to input their age. Output true if the user is an adult, and false if they are a child.`,
+    
+        code: `// Comparison examples
+console.log(5 > 3);     // true
+console.log(10 == 7);   // false
+console.log(4 != 4);    // false
+
+// Logical examples
+console.log(true && false); // false
+console.log(true || false); // true
+console.log(!true);         // false`,
+    
+        format: "text"
+    },
+
+    "If/Else Statements":{
+        header: `An <code>if</code> statement lets your program make decisions.<br><br>
+The syntax looks like this:
+<pre>
+if (condition) {
+    // code runs if the condition is true
+} else {
+    // code runs if the condition is false
+}
+</pre>
+The condition inside the parentheses must be something that is <code>true</code> or <code>false</code> (a Boolean). If the condition is true, the first block runs; otherwise, the <code>else</code> block runs.<br><br>
+You can also add more checks using <code>else if</code> for multiple possibilities.`,
+    
+        task: `Choose a secret letter, then let the user guess the letter. If they get it right, congratulate them. Otherwise, output what the letter was.`,
+        
+        code: `let number = 5;
+
+if (number > 0) {
+    console.log("The number is positive");
+} else if (number < 0) {
+    console.log("The number is negative");
+} else {
+    console.log("The number is zero");
+}`,
+        
+        format: "text"
+
+    },
+
+    "Switch Statements": {
+        header: `A <code>switch</code> statement is another way to run different code based on a value. It’s often easier to read than multiple <code>if...else if</code> statements when checking the same variable.<br><br>
+The syntax looks like this:
+<pre>
+switch (value) {
+    case option1:
+        // code if value === option1
+        break;
+    case option2:
+        // code if value === option2
+        break;
+    default:
+        // code if no cases match
+}
+</pre>
+Each <code>case</code> checks if the value matches. Use <code>break</code> to stop the switch after running that case’s code. The <code>default</code> block runs if none of the cases match.`,
+    
+        task: `Write a program that asks the user for their favorite color and prints a different message for at least three colors. Include a <code>default</code> case for any other color.`,
+    
+        code: `let fruit = "apple";
+
+switch (fruit) {
+    case "apple":
+        console.log("Apples are tasty!");
+        break;
+    case "banana":
+        console.log("Bananas are great for energy!");
+        break;
+    case "orange":
+        console.log("Oranges are full of vitamin C!");
+        break;
+    default:
+        console.log("That's a nice choice!");
+}`,
+    
+        format: "text"
     }
+
+
+
 
 }
