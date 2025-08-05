@@ -1,7 +1,8 @@
 let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions"]
 let units = [
     ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
-    ["Booleans and Operators","If/Else Statements","Switch Statements"]
+    ["Booleans and Operators","If/Else Statements","Switch Statements"],
+    ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Challenge: Number Guessing Game"]
 ];
 
 
@@ -191,8 +192,141 @@ switch (fruit) {
 }`,
     
         format: "text"
-    }
+    },
 
+    "For Loops": {
+        header: `A <code>for</code> loop repeats code a set number of times. It has three parts inside parentheses:<br>
+<code>for (start; condition; step) { ... }</code><br><br>
+<ul>
+<li><b>start</b> — runs once at the beginning (usually to set a counter variable)</li>
+<li><b>condition</b> — checked before each loop; if false, the loop stops</li>
+<li><b>step</b> — runs after each loop (usually increases the counter)</li>
+</ul>
+Example syntax:
+<pre>
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+</pre>
+This starts at <code>i = 0</code>, runs while <code>i &lt; 5</code>, and increases <code>i</code> by 1 each time.`,
+    
+        task: `Write a for loop that counts from 1 to 10 and prints each number.`,
+    
+        code: `for (let i = 0; i < 5; i++) {
+    console.log("Loop number: " + i);
+}`,
+    
+        format: "text"
+    },
+
+    "While Loops": {
+        header: `A <code>while</code> loop repeats code as long as a condition is <code>true</code>. The condition is checked <b>before</b> each loop, so if it’s false at the start, the loop never runs.<br><br>
+    Syntax:
+    <pre>
+    while (condition) {
+        // code runs if condition is true
+    }
+    </pre>
+    Be careful — if the condition never becomes false, you’ll create an <b>infinite loop</b> that never stops!<br><br>
+    Use a counter or some other change inside the loop so it eventually ends.`,
+        
+        task: `Write a while loop that counts down from 5 to 1 and prints each number.`,
+        
+        code: `let count = 3;
+
+while (count > 0) {
+    console.log("Countdown: " + count);
+    count--;
+}`,
+        
+        format: "text"
+    },
+
+
+    "Basic Functions": {
+        header: `A function is a reusable block of code that can be called whenever you need it.<br><br>
+    The basic syntax looks like this:
+    <pre>
+    function functionName() {
+        // code to run
+    }
+    </pre>
+    To run (or <i>call</i>) the function, just write its name followed by parentheses:
+    <pre>
+    functionName();
+    </pre>
+    Whenever you call a function, the code you wrote inside that function will run.<br>
+    Functions help keep your code organized and avoid repeating the same code multiple times.`,
+        
+        task: `Write a function that prints a greeting message to the console, then call it at least twice.`,
+        
+        code: `function sayHello() {
+    console.log("Hello!");
+}
+
+sayHello();`,
+        
+        format: "text"
+    },
+
+    "Functions with Parameters": {
+        header: `Parameters are variables you define in a function so it can receive information when it’s called.<br><br>
+When defining a function, put the parameter names inside the parentheses:
+<pre>
+function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+</pre>
+When calling the function, put the actual values you want to pass in:
+<pre>
+greet("Alice"); // name will be "Alice"
+</pre>
+In the above example, the function <code>greet</code> would be able to use <code>name</code> like any other normal variable. Its value would be set to <code>"Alice"</code> because of the function call.<br>
+This makes your functions flexible so they can work with different data without rewriting the code.`,
+    
+        task: `Write a function with one or more parameters, and call it several times with different arguments.`,
+    
+        code: `function greet(name) {
+    console.log("Hello, " + name + "!");
+}
+
+greet("Alice");
+greet("Bob");`,
+    
+        format: "text"
+    },
+
+    "Return Values": {
+        header: `A function can send a value back to the code that called it using the <code>return</code> keyword.<br><br>
+When a function returns something, you can store it in a variable or use it directly in another expression.<br><br>
+Syntax:
+<pre>
+function add(a, b) {
+    return a + b;
+}
+
+let sum = add(3, 4); // sum will be 7
+</pre>
+Once <code>return</code> runs, the function stops immediately, even if there is more code after it.`,
+    
+        task: `Write a function that returns a calculated value, store it in a variable, and print it with <code>console.log()</code>.`,
+    
+        code: `function add(a, b) {
+    return a + b;
+}
+
+let result = add(5, 2);
+console.log(result);`,
+    
+        format: "text"
+    },
+
+    "Challenge: Number Guessing Game":{
+        header:`Use what you learned from previous lessons to complete this challenge.`,
+        task:`Write a program that lets a user guess a secret number. When the user guesses a number, the program should tell them if it is too high or too low. The user should keep guessing until they guess correctly.`,
+        code:``,
+        format:"text"
+    }
 
 
 
