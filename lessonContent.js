@@ -1,8 +1,9 @@
-let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions"]
+let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures"]
 let units = [
     ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
-    ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Challenge: Number Guessing Game"]
+    ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
+    ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"]
 ];
 
 
@@ -326,7 +327,216 @@ console.log(result);`,
         task:`Write a program that lets a user guess a secret number. When the user guesses a number, the program should tell them if it is too high or too low. The user should keep guessing until they guess correctly.`,
         code:``,
         format:"text"
+    },
+
+    "Variable Scope": {
+        header: `Scope determines where a variable can be accessed from in your code.<br><br>
+
+    There are two main types of scope you need to know:<br>
+    <ul>
+    <li><b>Global scope:</b> A variable declared outside any function can be used anywhere in your code.</li>
+    <li><b>Local scope:</b> A variable declared inside a function can only be used inside that function.</li>
+    </ul>
+
+    Here's an example:
+    <pre>
+    let globalVar = "I'm global";
+
+    function testScope() {
+        let localVar = "I'm local";
+        console.log(globalVar); // works
+        console.log(localVar);  // works
     }
+
+    testScope();
+
+    console.log(globalVar); // works
+    console.log(localVar);  // ❌ Error: localVar is not defined
+    </pre>
+    Understanding scope helps you avoid bugs and keeps your code clean.`,
+        
+        task: `Create a function with a local variable. Try accessing that variable outside the function and observe what happens.`,
+        
+        code: `let outside = "I am outside the function";
+
+function showScope() {
+    let inside = "I am inside the function";
+    console.log(outside); // this works
+    console.log(inside);  // this works
+}
+
+showScope();
+
+console.log(outside); // this works
+console.log(inside);  // ❌ this causes an error`,
+        
+        format: "text"
+    },
+
+    "String Operations and Methods": {
+        header: `Strings can be combined, changed, and analyzed using operators and built-in methods.<br><br>
+
+    Here are some basic string operations:
+    <ul>
+    <li><code>+</code> — concatenates (joins) two strings</li>
+    <li><code>.length</code> — returns the number of characters in a string</li>
+    </ul>
+
+    And here are some useful string methods:<br>
+<i>(A method is just a function that strings have built in — it does something to the string.)</i>
+    <ul>
+    <li><code>toUpperCase()</code> — returns the string in all uppercase</li>
+    <li><code>toLowerCase()</code> — returns the string in all lowercase</li>
+    <li><code>includes(substring)</code> — checks if the string contains the given substring</li>
+    <li><code>slice(start, end)</code> — extracts a section of the string</li>
+    </ul>
+
+    You can chain methods too: <code>"hello".toUpperCase()</code> will become <code>"HELLO"</code>.`,
+        
+        task: `Use at least two string methods to manipulate a string, then print the results.`,
+        
+        code: `let message = "Hello, JavaScript!";
+console.log(message.length);        // 18
+console.log(message.toUpperCase()); // "HELLO, JAVASCRIPT!"`,
+        
+        format: "text"
+    },
+
+    "Arrays": {
+        header: `An <b>array</b> is a list of multiple values stored in a single variable. You can store numbers, strings, or even other arrays inside it.<br><br>
+
+    Arrays use square brackets <code>[]</code>, and each value inside is called an <b>element</b>. Elements are separated by commas, and each one has a position called an <b>index</b>, starting from 0.
+
+    <pre>
+    let fruits = ["apple", "banana", "cherry"];
+    console.log(fruits[0]); // "apple"
+    </pre>
+
+    You can change elements using their index too:
+    <pre>
+    fruits[1] = "blueberry";
+    </pre>
+
+    Some common array methods:
+    <ul>
+    <li><code>.push(value)</code> — adds a value to the end of the array</li>
+    <li><code>.pop()</code> — removes and returns the last element</li>
+    <li><code>.length</code> — gives the number of elements</li>
+    </ul>`,
+        
+        task: `Make an array with at least 3 items. Add a new item using <code>push()</code>, change one of the original items, and then print the full array.`,
+        
+        code: `let colors = ["red", "green", "blue"];
+colors.push("yellow");
+colors[0] = "orange";
+console.log(colors);`,
+        
+        format: "text"
+    },
+
+
+    "Objects": {
+        header: `An <b>object</b> is a collection of related data stored as <b>key-value pairs</b>. Each key (also called a <i>property</i>) has a value, and you access them using either dot notation or square brackets.<br><br>
+
+    Here’s an example:
+    <pre>
+    let person = {
+        name: "Alex",
+        age: 17,
+        isStudent: true
+    };
+
+    console.log(person.name);       // "Alex"
+    console.log(person["age"]);     // 17
+    </pre>
+
+    You can also change values or add new ones:
+    <pre>
+    person.age = 18;
+    person.grade = "12th";
+    </pre>`,
+        
+        task: `Create an object to represent a pet, with at least 3 properties like name, type, and age. Then change one of the properties and print the object.`,
+        
+        code: `let pet = {
+    name: "Biscuit",
+    type: "dog",
+    age: 5
+};
+
+pet.age = 6;
+console.log(pet);`,
+        
+        format: "text"
+    },
+
+
+
+    "For Loops with Arrays and Objects": {
+        header: `You can use <b>for loops</b> to go through each item in an array or each key in an object.<br><br>
+
+    To loop through an <b>array</b> using a regular <code>for</code> loop:
+    <pre>
+    let colors = ["red", "blue", "green"];
+    for (let i = 0; i < colors.length; i++) {
+        console.log(colors[i]);
+    }
+    </pre>
+
+    You can also use a <code>for...of</code> loop (a cleaner way for arrays):
+    <pre>
+    for (let color of colors) {
+        console.log(color);
+    }
+    </pre>
+
+    To loop through the <b>keys</b> in an <b>object</b>, use <code>for...in</code>:
+    <pre>
+    let person = { name: "Sam", age: 16, city: "Chicago" };
+    for (let key in person) {
+        console.log(key + ": " + person[key]);
+    }
+    </pre>`,
+
+        task: `Make an array of at least 3 favorite foods and print each one using a <code>for</code> loop. Then make an object with 3 properties (like hobby, grade, and favoriteColor) and print all its key-value pairs using a <code>for...in</code> loop.`,
+        
+        code: `let foods = ["pizza", "tacos", "ice cream"];
+for (let i = 0; i < foods.length; i++) {
+    console.log(foods[i]);
+}
+
+let me = {
+    hobby: "gaming",
+    grade: 11,
+    favoriteColor: "blue"
+};
+
+for (let key in me) {
+    console.log(key + ": " + me[key]);
+}`,
+    
+        format: "text"
+    },
+
+    "Challenge: Playlist Rater":{
+        header:`Use what you learned from previous lessons to complete this challenge.`,
+        task:`Create a program that:
+<ul>
+<li>Uses an array to store a list of song names (you choose the songs!).</li>
+
+<li>Loops through each song and asks the user to rate it (1–5) using prompt().</li>
+
+<li>Stores the ratings in a second array or in an object.</li>
+
+<li>After all songs are rated, calculates and prints the average score.</li>
+
+<li>Optionally prints out which song got the highest rating.</li>
+</ul>`,
+        code:``,
+        format:`text`
+    }
+
+
 
 
 
