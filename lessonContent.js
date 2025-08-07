@@ -4,7 +4,7 @@ let units = [
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
-    ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes"]
+    ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"]
 ];
 
 
@@ -619,6 +619,13 @@ add(t);`,
         
         format: "graphics"
 
+    },
+
+    "Challenge: Draw Something":{
+        header:`Use your new knowledge of shapes and the canvas to draw something!`,
+        task:`Draw anything you want. use at least three shapes.`,
+        code:``,
+        format:"graphics"
     }
 
 }
