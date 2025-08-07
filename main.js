@@ -139,11 +139,108 @@ async function runCode() {
 }
 */
 
+let objects = []
+let images=[]
+let canv
 async function runCode() {
     reset();
     const userCode = document.getElementById("code").value;
 
     const blob = new Blob([`
+
+      class Shape{
+        constructor(){
+          this.color="black";
+          this.x=0;
+          this.y=0;
+        }
+        setPosition(x,y){
+          this.x=x
+          this.y=y
+        }
+        setColor(c){
+          this.color=c
+        }
+      }
+
+      class Circle extends Shape{
+        constructor(r){
+          super();
+          this.radius=r;
+          this.type="circle";
+        }
+        setRadius(r){
+          this.radius = r
+        }
+      }
+
+      class Rectangle extends Shape{
+        constructor(w,h){
+          super();
+          this.width = w;
+          this.height = h;
+          this.type="rectangle";
+        }
+        setSize(w,h){
+          this.width=w;
+          this.height=h;
+        }
+      }
+
+      class Image extends Rectangle{
+        constructor(url){
+          super(50,50);
+          this.url=url;
+          this.type="image";
+        }
+        setURL(url){
+          this.url=url
+        }
+      }
+
+      class Line extends Shape{
+        constructor(x1,y1,x2,y2){
+          super()
+          this.width=1;
+          this.x1=x1;
+          this.y1=y1;
+          this.x2=x2;
+          this.y2=y2;
+          this.type="line";
+        }
+        setLine(x1,y1,x2,y2){
+          this.x1=x1;
+          this.y1=y1;
+          this.x2=x2;
+          this.y2=y2;
+        }
+        setWidth(w){
+          this.width=w;
+        }
+      }
+
+      class Text extends Shape{
+
+        constructor(text,size,font){
+          super();
+          this.text=text;
+          this.size=size;
+          this.font=font;
+          this.type="text";
+        }
+        setText(t){
+          this.text=t;
+        }
+        setSize(s){
+          this.size=s;
+        }
+        setFont(f){
+          this.font=f;
+        }
+      
+      }
+
+
         let pendingPromptResolves = [];
 
         onmessage = function(e) {
@@ -171,7 +268,9 @@ async function runCode() {
                         postMessage({ type: 'prompt', msg, id });
                     });
                 }
-
+                function add(obj){
+                  postMessage({type:"addObject", msg:obj});
+                }
                 (async () => {
                     try {
                         await eval("(async () => {" + e.data.code + "})()");
@@ -196,6 +295,9 @@ async function runCode() {
         document.getElementById("console").textContent += "\n⏱ Execution timed out!";
     }, 1000);*/
 
+    canv = createCanvas(400,400);
+    canv.parent("grid-container")
+
     worker.onmessage = async (e) => {
         if (e.data.type === 'log') {
             document.getElementById("console").textContent += e.data.msg + "\n";
@@ -204,11 +306,36 @@ async function runCode() {
         } else if (e.data.type === 'prompt') {
             const response = window.prompt(e.data.msg);
             worker.postMessage({ type: 'prompt-response', id: e.data.id, response });
+        }else if (e.data.type==="addObject"){
+            objects.push(e.data.msg)
+            if (e.data.msg.type==="image"){
+              images.push(loadImage(e.data.msg.url));
+              e.data.msg.imageID = images.length-1;
+            }
         }
     };
 
     let transformed = userCode.replace(/(?<![\w$])prompt\s*\(/g, 'await prompt(')
     worker.postMessage({ type:"code", code:transformed});
+}
+
+let shapeDraw = {
+  "circle":(o)=>{circle(o.x,o.y,o.radius)},
+  "rectangle":(o)=>{rect(o.x,o.y,o.width,o.height)},
+  "image":(o)=>{image(images[o.imageID],o.x,o.y,o.width,o.height)},
+  "line":(o)=>{stroke(o.color); strokeWeight(o.width); line(o.x1,o.y1,o.x2,o.y2)},
+  "text":(o)=>{textSize(o.size);textFont(o.font); text(o.text, o.x,o.y)}
+}
+
+function draw(){
+  if (format==="graphics"){
+    for (let o of objects){
+      fill(o.color)
+      stroke(0)
+      strokeWeight(1)
+      shapeDraw[o.type](o)
+    }
+  }
 }
 
 // Start fresh

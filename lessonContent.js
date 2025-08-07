@@ -1,9 +1,10 @@
-let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures"]
+let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures","Graphics"]
 let units = [
     ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
-    ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"]
+    ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
+    ["Drawing Shapes"]
 ];
 
 
@@ -534,6 +535,13 @@ for (let key in me) {
 </ul>`,
         code:``,
         format:`text`
+    },
+
+    "Drawing Shapes":{
+        header:`Testing graphics mode. no lesson yet.`,
+        task:`draw`,
+        code:``,
+        format:"graphics"
     }
 
 

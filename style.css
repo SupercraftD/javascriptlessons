@@ -151,6 +151,9 @@
     align-items: center;
     overflow-x: hidden;
   }
+  canvas{
+    border:1px solid black;
+  }
   #grid {
     display: grid;
     grid-template-columns: repeat(10, 40px);
