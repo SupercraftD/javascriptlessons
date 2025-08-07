@@ -4,7 +4,7 @@ let units = [
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
-    ["Drawing Shapes"]
+    ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes"]
 ];
 
 
@@ -537,15 +537,89 @@ for (let key in me) {
         format:`text`
     },
 
-    "Drawing Shapes":{
-        header:`Testing graphics mode. no lesson yet.`,
-        task:`draw`,
-        code:``,
-        format:"graphics"
+    "Intro to Drawing Shapes": {
+        header: `Welcome to the graphics canvas!<br><br>
+    You can create shapes like rectangles and circles using special classes. Once you make a shape, use the <code>add()</code> function to display it on the screen.<br><br>
+
+    Try making shapes with these classes:
+    <ul>
+        <li><code>new Rectangle(width, height)</code> — makes a rectangle</li>
+        <li><code>new Circle(radius)</code> — makes a circle</li>
+    </ul>
+
+    Then, use <code>add()</code> to draw the shape.<br>
+    Read the example code to see how it works.`,
+        
+        task: `Make two different shapes and add them to the canvas. Try a rectangle and a circle!`,
+        
+        code: `let r = new Rectangle(100, 50);
+add(r);
+
+let c = new Circle(40);
+add(c);`,
+        
+        format: "graphics"
+    },
+
+    "Positioning Shapes":{
+        header: `Every shape has an x and y position that tells it where to appear on the canvas. The x value controls how far across the shape is (left to right), and the y value controls how far down it is (top to bottom).<br><br>
+You can set these values when you create the shape. For example, a Circle at (100, 150) will be drawn 100 pixels from the left and 150 pixels from the top. The canvas is 400 pixels by 400 pixels.<br><br>
+Use <code>.setPosition(x,y)</code> to change a shape's position. See it in use below.`,
+        task: `Make one Circle and one Rectangle appear in different positions by changing their x and y values.`,
+        code: `let c = new Circle(50);
+c.setPosition(100,150);
+add(c);
+
+let r = new Rectangle(100,100);
+r.setPosition(10,10);
+add(r);`,
+        format: "graphics"
+    },
+
+    "Colors":{
+        header: `You can change the color of a shape by calling its <code>setColor()</code> method before adding it to the canvas.<br><br>
+You can use common color names like <code>"red"</code>, <code>"blue"</code>, or <code>"green"</code>, or even hex codes like <code>"#FF00FF"</code>.<br><br>
+Call <code>setColor(color)</code> on your shape before <code>add()</code>.`,
+    
+        task: `Make two shapes, each with a different color.`,
+    
+        code: `let r = new Rectangle(100, 60);
+r.setColor("blue");
+add(r);
+
+let c = new Circle(40);
+c.setColor("red");
+add(c);`,
+    
+        format: "graphics"
+    },
+
+    "More Shapes":{
+        header: `Besides rectangles and circles, you can also draw lines and text!<br><br>
+
+Here are two more shape types you can use:
+
+<ul>
+  <li><code>new Line(x1, y1, x2, y2)</code> — draws a line from point 1 to point 2</li>
+  <li><code>new Text(message, size, font)</code> — displays a text label</li>
+</ul>
+
+You can use <code>setColor()</code> and <code>setPosition</code> just like other shapes.<br>
+Line also has a <code>.setWidth()</code> method to change the width of the line.`,
+    
+        task: `Draw one line and one piece of text on the canvas.`,
+        
+        code: `let l = new Line(50, 50, 200, 150);
+l.setColor("black");
+add(l);
+
+let t = new Text("Hello, canvas!",30,"Arial");
+t.setPosition(100,100)
+add(t);`,
+        
+        format: "graphics"
+
     }
 
-
-
-
-
 }
+

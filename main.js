@@ -151,8 +151,8 @@ async function runCode() {
       class Shape{
         constructor(){
           this.color="black";
-          this.x=0;
-          this.y=0;
+          this.x=200;
+          this.y=200;
         }
         setPosition(x,y){
           this.x=x
