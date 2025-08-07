@@ -1,5 +1,10 @@
 
 let format = "text";
+
+let objects = []
+let images=[]
+
+
 function switchAssignment(u,l){
   document.getElementById("assignmenttitle").innerHTML = `${u+1}.${l+1}: ${units[u][l]}`;
   document.getElementById("header").innerHTML = lessonContents[units[u][l]].header+`<br><br><b>Your Task:</b> `+lessonContents[units[u][l]].task;
@@ -25,6 +30,8 @@ function switchAssignment(u,l){
   }else{
     document.getElementById("console").style.display = "none";
     format = "graphics";
+    objects=[]
+    images=[]
   }
 
 }
@@ -139,8 +146,6 @@ async function runCode() {
 }
 */
 
-let objects = []
-let images=[]
 let canv
 async function runCode() {
     reset();
@@ -328,6 +333,7 @@ let shapeDraw = {
 }
 
 function draw(){
+  background("white")
   if (format==="graphics"){
     for (let o of objects){
       fill(o.color)
