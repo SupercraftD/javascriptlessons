@@ -1,8 +1,9 @@
 
 let format = "text";
 
-let objects = []
+let objects = {}
 let images=[]
+let worker
 
 
 function switchAssignment(u,l){
@@ -24,13 +25,15 @@ function switchAssignment(u,l){
     document.getElementById("code").value = `//###### WRITE YOUR CODE HERE #####\n`;
   }
 
+  reset()
+
   if (lessonContents[units[u][l]].format == "text"){
     document.getElementById("console").style.display = "block";
     format = "text";
   }else{
     document.getElementById("console").style.display = "none";
     format = "graphics";
-    objects=[]
+    objects={}
     images=[]
   }
 
@@ -103,9 +106,13 @@ textarea.addEventListener("keydown", function(e) {
 
 
 function reset(){
+  objects={}
+  images=[]
+  if (worker){
+    worker.terminate()
+  }
   document.getElementById("console").textContent = ""
 }
-let worker
 document.getElementById("stopbtn").addEventListener('click', () => {
     worker.terminate();
     document.getElementById("console").textContent += "\nExecution stopped.";
@@ -152,19 +159,28 @@ async function runCode() {
     const userCode = document.getElementById("code").value;
 
     const blob = new Blob([`
+      
+      let objCount=0
 
       class Shape{
         constructor(){
           this.color="black";
           this.x=200;
           this.y=200;
+          this.id=objCount
+          objCount++;
         }
         setPosition(x,y){
           this.x=x
           this.y=y
+          this.updated()
         }
         setColor(c){
           this.color=c
+          this.updated()
+        }
+        updated(){
+          postMessage({type:"updateObject", msg:this});
         }
       }
 
@@ -176,6 +192,7 @@ async function runCode() {
         }
         setRadius(r){
           this.radius = r
+          this.updated()
         }
       }
 
@@ -189,6 +206,7 @@ async function runCode() {
         setSize(w,h){
           this.width=w;
           this.height=h;
+          this.updated()
         }
       }
 
@@ -200,6 +218,7 @@ async function runCode() {
         }
         setURL(url){
           this.url=url
+          this.updated()
         }
       }
 
@@ -218,9 +237,11 @@ async function runCode() {
           this.y1=y1;
           this.x2=x2;
           this.y2=y2;
+          this.updated()
         }
         setWidth(w){
           this.width=w;
+          this.updated()
         }
       }
 
@@ -235,12 +256,16 @@ async function runCode() {
         }
         setText(t){
           this.text=t;
+          this.updated()
         }
         setSize(s){
           this.size=s;
+          this.updated()
         }
         setFont(f){
           this.font=f;
+          this.updated()
+
         }
       
       }
@@ -312,11 +337,13 @@ async function runCode() {
             const response = window.prompt(e.data.msg);
             worker.postMessage({ type: 'prompt-response', id: e.data.id, response });
         }else if (e.data.type==="addObject"){
-            objects.push(e.data.msg)
+            objects[e.data.msg.id] = e.data.msg
             if (e.data.msg.type==="image"){
               images.push(loadImage(e.data.msg.url));
               e.data.msg.imageID = images.length-1;
             }
+        }else if (e.data.type==="updateObject"){
+          objects[e.data.msg.id] = e.data.msg
         }
     };
 
@@ -325,7 +352,7 @@ async function runCode() {
 }
 
 let shapeDraw = {
-  "circle":(o)=>{circle(o.x,o.y,o.radius)},
+  "circle":(o)=>{circle(o.x,o.y,o.radius*2)},
   "rectangle":(o)=>{rect(o.x,o.y,o.width,o.height)},
   "image":(o)=>{image(images[o.imageID],o.x,o.y,o.width,o.height)},
   "line":(o)=>{stroke(o.color); strokeWeight(o.width); line(o.x1,o.y1,o.x2,o.y2)},
@@ -335,7 +362,8 @@ let shapeDraw = {
 function draw(){
   background("white")
   if (format==="graphics"){
-    for (let o of objects){
+    for (let k in objects){
+      let o = objects[k]
       fill(o.color)
       stroke(0)
       strokeWeight(1)

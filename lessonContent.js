@@ -1,10 +1,11 @@
-let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures","Graphics"]
+let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures","Graphics","Animations and Games"]
 let units = [
     ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
-    ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"]
+    ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"],
+    ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls"]
 ];
 
 
@@ -626,7 +627,174 @@ add(t);`,
         task:`Draw anything you want. use at least three shapes.`,
         code:``,
         format:"graphics"
-    }
+    },
+
+
+    "Timers":{
+        header: `In games and animations, timers let you control <em>when</em> things happen.<br><br>
+
+Instead of everything happening instantly, you can make actions occur after a delay or repeatedly at a set pace.<br><br>
+
+JavaScript has two main timer functions:
+<ul>
+  <li><code>setTimeout(functionName, delay)</code> — runs a function once after <code>delay</code> milliseconds.</li>
+  <li><code>setInterval(functionName, delay)</code> — runs a function over and over, waiting <code>delay</code> milliseconds between runs.</li>
+</ul>
+
+Why use timers?  
+<ul>
+  <li>To spawn enemies every few seconds</li>
+  <li>To make something blink or flash on a schedule</li>
+  <li>To delay an event, like showing "Game Over" after 2 seconds</li>
+</ul>
+
+Remember: 1000 milliseconds = 1 second.`,
+    
+    task: `Make a circle switch between red and blue every second using setInterval. Then, make a rectangle appear 3 seconds after the program starts using setTimeout.`,
+    
+    code: `// Example 1: Runs once after 2 seconds
+function drawSquare() {
+    let s = new Rectangle(50, 50);
+    s.setPosition(100, 100);
+    s.setColor("green");
+    add(s);
+}
+setTimeout(drawSquare, 2000);
+
+// Example 2: Runs repeatedly every 1 second
+function toggleCircle() {
+    let c = new Circle(20);
+    c.setPosition(200, 100);
+    c.setColor("purple");
+    add(c);
+}
+setInterval(toggleCircle, 1000);`,
+    
+    format: "graphics"
+},
+
+    "Stopping Timers":{
+        header: `Timers are useful, but sometimes you don't want them to run forever.<br><br>
+
+For example:
+<ul>
+  <li><code>setTimeout()</code> runs code once after a delay.</li>
+  <li><code>setInterval()</code> runs code over and over until you stop it.</li>
+</ul>
+
+To stop a timer:
+<ul>
+  <li><code>clearTimeout(timerName)</code> — stops a timeout before it happens.</li>
+  <li><code>clearInterval(timerName)</code> — stops an interval so it doesn't keep going.</li>
+</ul>
+
+When you start a timer, it returns an ID number. You save that ID in a variable, and then use that variable to clear it.`,
+    
+    task: `Make a circle move down the screen using setInterval(). When the circle reaches the bottom of the canvas, stop the timer so it doesn’t move off screen.`,
+    
+    code: `let circle = new Circle(30);
+circle.setPosition(100,50);
+circle.setColor("blue");
+add(circle);
+
+let timerId = setInterval(changeColor, 1000);
+
+function changeColor(){
+    circle.setColor("red");
+}
+
+clearInterval(timerId);`,
+    
+    format: "graphics"
+},
+
+    "Random Numbers":{
+  header: `Sometimes programs need to do something different every time they run, like picking a random color or position. JavaScript has a built-in function called <code>Math.random()</code> that gives you a random decimal number between 0 (inclusive) and 1 (exclusive).<br><br>
+  
+  You can use this to create random numbers in different ranges by multiplying and rounding.<br><br>
+  
+  Example:<br>
+  - <code>Math.random()</code> gives a number like 0.23 or 0.87<br>
+  - <code>Math.random() * 10</code> gives a number between 0 and 10 (not including 10)<br>
+  - <code>Math.floor(Math.random() * 10)</code> gives a whole number between 0 and 9<br>
+  `,
+  task: `Use Math.random() to create a rectangle that has a random size and that appears at a random position on the canvas each time you run the code. Use numbers between 0 and 400 for x and y.`,
+  code: `// Create a circle with random position and color
+
+let x = Math.floor(Math.random() * 400);
+let y = Math.floor(Math.random() * 400);
+
+let circle = new Circle(50);
+circle.setPosition(x, y);
+add(circle);`,
+  format: "graphics"
+},
+
+"Collisions and Bouncing": {
+  header: `
+  When a circle moves, it has a position (x, y) and a size (radius).<br><br>
+
+  To detect a collision with the canvas walls:<br>
+  - Check if the left edge (x - radius) goes past 0 (left wall)<br>
+  - Check if the right edge (x + radius) goes past the canvas width (right wall)<br>
+  - Check if the top edge (y - radius) goes past 0 (top wall)<br>
+  - Check if the bottom edge (y + radius) goes past the canvas height (bottom wall)<br><br>
+
+
+  If any of these happen, the circle is hitting a wall.<br>
+  To make it bounce, reverse the direction of movement by flipping the speed sign.<br><br>
+
+This works with any shape, except instead of radius it is width or height, respectively.<br>
+
+  we use <code>setInterval()</code> to update the position repeatedly over time.
+  `,
+  
+  task: `Make a rectangle bounce move constantly and bounce off the walls. Look at the example code below for a circle for help.`,
+  
+  code: `// Starting position and speed
+let x = 200;
+let y = 200;
+let speedX = 3;
+let speedY = 2;
+
+let circle = new Circle(40);
+circle.setPosition(x, y);
+circle.setColor("blue");
+add(circle);
+
+function update() {
+  x += speedX;
+  y += speedY;
+
+  // Bounce off left or right walls
+  if (x - circle.radius < 0 || x + circle.radius > 400) {
+    speedX = -speedX;
+  }
+
+  // Bounce off top or bottom walls
+  if (y - circle.radius < 0 || y + circle.radius > 400) {
+    speedY = -speedY;
+  }
+
+  circle.setPosition(x, y);
+}
+
+// Update 60 times per second
+setInterval(update, 1000 / 60);`,
+  
+  format: "graphics"
+},
+
+"Challenge: Colliding Balls":{
+
+    header:`Use what you learned in the previous lessons to solve this challenge. <br>
+    <b>Hint:</b> keep track of the edges of both circles, and treat their collisions when they touch the same way as hitting a wall.`,
+    task:`Create two balls moving towards each other constantly. When they hit each other or a wall, they should bounce in the opposite direction.`,
+    code:``,
+    format:`graphics`
+}
+
+
 
 }
 
