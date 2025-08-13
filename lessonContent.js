@@ -670,7 +670,8 @@ function toggleCircle() {
 }
 setInterval(toggleCircle, 1000);`,
     
-    format: "graphics"
+    format: "graphics",
+    img:"imgs/flsahgif.gif"
 },
 
     "Stopping Timers":{
@@ -705,7 +706,8 @@ function changeColor(){
 
 clearInterval(timerId);`,
     
-    format: "graphics"
+    format: "graphics",
+    img:"imgs/dropgif.gif"
 },
 
     "Random Numbers":{
@@ -727,7 +729,8 @@ let y = Math.floor(Math.random() * 400);
 let circle = new Circle(50);
 circle.setPosition(x, y);
 add(circle);`,
-  format: "graphics"
+  format: "graphics",
+  img:"imgs/randomfig.gif"
 },
 
 "Collisions and Bouncing": {
@@ -782,7 +785,8 @@ function update() {
 // Update 60 times per second
 setInterval(update, 1000 / 60);`,
   
-  format: "graphics"
+  format: "graphics",
+  img:"imgs/bouncegif.gif"
 },
 
 "Challenge: Colliding Balls":{
@@ -791,7 +795,8 @@ setInterval(update, 1000 / 60);`,
     <b>Hint:</b> keep track of the edges of both circles, and treat their collisions when they touch the same way as hitting a wall.`,
     task:`Create two balls moving towards each other constantly. When they hit each other or a wall, they should bounce in the opposite direction.`,
     code:``,
-    format:`graphics`
+    format:`graphics`,
+    img:"imgs/collidegif.gif"
 }
 
 
