@@ -270,8 +270,13 @@ async function runCode() {
       
       }
 
-
+        let mcm;
         let pendingPromptResolves = [];
+
+        // Storage for the student's callback functions
+        let keyDownCallback = null;
+        let keyUpCallback = null;
+
 
         onmessage = function(e) {
             if (e.data.type === "code") {
@@ -301,6 +306,20 @@ async function runCode() {
                 function add(obj){
                   postMessage({type:"addObject", msg:obj});
                 }
+
+                function mouseClickMethod(method){
+                  mcm = method;
+                }
+                
+                // Functions the student's code will call
+                function keyDownMethod(func) {
+                    keyDownCallback = func;
+                }
+                function keyUpMethod(func) {
+                    keyUpCallback = func;
+                }
+
+
                 (async () => {
                     try {
                         await eval("(async () => {" + e.data.code + "})()");
@@ -315,6 +334,18 @@ async function runCode() {
                     resolve(e.data.response);
                     delete pendingPromptResolves[e.data.id];
                 }
+            } else if (e.data.type === "mouseEvent"){
+              if (mcm){
+                mcm(e.data.event);
+              } 
+            }else if (e.data.type==="keydown"){
+              if (keyDownCallback){
+                keyDownCallback({ key: e.data.key, code: e.data.code });
+              }
+            }else if (e.data.type==="keyup"){
+              if (keyUpCallback){
+                keyUpCallback({ key: e.data.key, code: e.data.code });
+              }
             }
         };
     `], { type: 'application/javascript' });
@@ -372,5 +403,34 @@ function draw(){
   }
 }
 
+function mousePressed() {
+  if (format === "graphics" && worker) {
+    worker.postMessage({
+      type: "mouseEvent",
+      event: { 
+        x: mouseX,
+        y: mouseY,
+        button: mouseButton
+      }
+    });
+  }
+}
+
+// Send keyboard events to the worker
+window.addEventListener("keydown", e => {
+    worker.postMessage({
+        type: "keydown",
+        key: e.key,
+        code: e.code
+    });
+});
+
+window.addEventListener("keyup", e => {
+    worker.postMessage({
+        type: "keyup",
+        key: e.key,
+        code: e.code
+    });
+});
 // Start fresh
 reset();

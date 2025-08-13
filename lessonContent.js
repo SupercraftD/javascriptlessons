@@ -5,7 +5,7 @@ let units = [
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
     ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"],
-    ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls"]
+    ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls","Mouse Clicks","Keyboard Inputs","Challenge: Putting It All Together"]
 ];
 
 
@@ -797,7 +797,93 @@ setInterval(update, 1000 / 60);`,
     code:``,
     format:`graphics`,
     img:"imgs/collidegif.gif"
+},
+"Mouse Clicks":{
+    header: `
+  Sometimes, we want the program to respond when the user clicks on the canvas.<br><br>
+
+  We can do this with <code>mouseClickMethod()</code>. This function takes the name of another function — called a <b>callback</b> — that will automatically run whenever the mouse is clicked inside the canvas.<br><br>
+
+  That callback function should have <b>one parameter</b>, which is an object that gives information about the click:<br>
+  - <code>x</code>: The horizontal position of the mouse click in pixels from the left<br>
+  - <code>y</code>: The vertical position of the mouse click in pixels from the top<br>
+  - <code>button</code>: Which mouse button was pressed (<code>'left'</code>, <code>'right'</code>, or <code>'center'</code>)<br><br>
+
+  By using these properties, you can move shapes, change colors, or trigger actions where the user clicks.<br><br>
+
+  For example, if you define a function like this:
+  <pre>function mouseClicked(event){
+  
+}</pre>
+  You can then call mouseClickMethod like this: <code>mouseClickMethod(mouseClicked)</code><br><br>
+  Now that you've passed in the name of the function <code>mouseClicked</code> into the <code>mouseClickMethod()</code> function, whenever a user clicks their mouse, then <code>mouseClicked</code> will be called, with the event data.
+  `,
+
+  task: `Make a shape that moves to wherever you click on the canvas. Use the click position (\`x\` and \`y\`) from the event parameter to set its new position.`,
+
+  code: `
+// This function runs whenever the canvas is clicked
+function handleClick(e) {
+    let circle = new Circle(50);
+    circle.setPosition(e.x, e.y);
+    circle.setColor("blue");
+    add(circle);
 }
+
+// Tell the program to call handleClick when the mouse is clicked
+mouseClickMethod(handleClick);`,
+
+  format: "graphics",
+  img: "imgs/mouseclickgif.gif"
+},
+
+"Keyboard Inputs":{
+      header: `
+  Keyboards are one way for your program to get input from the player.<br><br>
+
+  In our graphics system, you can detect when keys are pressed or released by using:<br>
+  - <code>keyDownMethod(functionName)</code> — runs your function when a key is pressed down.<br>
+  - <code>keyUpMethod(functionName)</code> — runs your function when a key is released.<br><br>
+
+  These functions take a <b>callback</b>, which is a function you define.<br>
+  The callback function is given one <b>event object</b> parameter with properties:<br>
+  - <code>key</code>: the actual character (like "a", "A", "1", "ArrowUp")<br>
+  - <code>code</code>: the physical key's code (like "KeyA", "Digit1", "ArrowUp")<br><br>
+
+  This allows you to check exactly which key was pressed, no matter the case or symbol.<br>
+  `,
+  
+  task: `Make a circle move left, right, up, or down depending on the arrow keys pressed. The example below just prints which key is pressed and released. <b>Hint:</b>Start moving in whenKeyDown, and stop moving in whenKeyUp.`,
+
+  code: `let text = new Text("key events will show here",24,"Arial");
+text.setPosition(10,20);
+add(text)
+
+function whenKeyDown(e) {
+  text.setText("Key down: " + e.key);
+}
+
+function whenKeyUp(e) {
+  text.setText("Key up: " + e.key);
+}
+
+keyDownMethod(whenKeyDown);
+keyUpMethod(whenKeyUp);`,
+
+  format: "graphics",
+  img: "imgs/keyboardeventsgif.gif"
+
+},
+
+"Challenge: Putting It All Together":{
+    header:`Use what you learned in this unit to use many new concepts at once.`,
+    task:`Create a game that does this: A new rectangle with a random size is made wherever you click. Each rectangle should continuously move and collide/bounce off the walls as well as other rectangles.<br>
+    <b>Hint</b>: Use objects to hold the data for each rectangle, including <code>x,y,speedX,speedY,width,height</code>, and store all those objects in an array. Loop over the array to change positions and check for collisions.`,
+    format:"graphics",
+    code:``,
+    img:"imgs/challengetogether.gif"
+}
+
 
 
 
