@@ -1,11 +1,12 @@
-let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures","Graphics","Animations and Games"]
+let unitNames = ["Basic JS and Console Interaction","Conditionals","Looping and Functions","Strings and Data Structures","Graphics","Animations and Games","Projects"]
 let units = [
     ["Printing to the Console", "Variables","User Input","Math and String Operators","Comments"],
     ["Booleans and Operators","If/Else Statements","Switch Statements"],
     ["While Loops","For Loops","Basic Functions","Functions with Parameters","Return Values","Variable Scope","Challenge: Number Guessing Game"],
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
     ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"],
-    ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls","Mouse Clicks","Keyboard Inputs","Challenge: Putting It All Together"]
+    ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls","Mouse Clicks","Keyboard Inputs","Challenge: Putting It All Together"],
+    ["A Ball in a Box","Raise The Flag","XY Plot","Color the Rainbow","Netherlands Flag","Ghost","Fried Egg","Snake Eyes","Concentric Circles","Growing Squares","Caterpillar","Confetti","Easter Eggs","Landscape","Global Travel Assistant","Balloons","Blinking Rectangles","Barcode","Fireflies","Project: Tic Tac Toe"]
 ];
 
 
@@ -882,10 +883,165 @@ keyUpMethod(whenKeyUp);`,
     format:"graphics",
     code:``,
     img:"imgs/challengetogether.gif"
+},
+
+"A Ball in a Box":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a ball inside a box.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/ballbox.png"
+},
+
+"Raise The Flag":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a flag on a flag pole.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/raisetheflag.png"
+},
+
+"XY Plot":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a graph with a X-axis and a Y-axis, and a line. `,
+    format:'graphics',
+    code:``,
+    img:"imgs/graph.png"
+},
+
+"Color the Rainbow":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a rainbow with 7 colored stripes. `,
+    format:'graphics',
+    code:``,
+    img:"imgs/rainbow.png"
+},
+
+"Netherlands Flag":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw the flag of the Netherlands `,
+    format:'graphics',
+    code:``,
+    img:"imgs/netherlands.png"
+},
+
+"Ghost":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a ghost `,
+    format:'graphics',
+    code:``,
+    img:"imgs/ghost.png"
+},
+"Fried Egg":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a fried egg in a pan `,
+    format:'graphics',
+    code:``,
+    img:"imgs/friedegg.png"
+},
+
+"Snake Eyes":{
+    header:`Use what you've learned to code the project`,
+    task:`Roll two six-sided dice until they are both ones. Output their values after each roll. Output the number of rolls it took to reach snake eyes at the end.`,
+    format:'text',
+    code:``,
+    img:"imgs/snakeeyes.png"
+},
+
+"Concentric Circles":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw multiple concentric circles overlapping each other, alternating colors.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/concentric.png"
+},
+
+"Growing Squares":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw many squares overlapping each other, growing in size, starting from the top left corner, representing perspective.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/perspective.png"
+},
+"Caterpillar":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a caterpillar made of circles of alternating colors.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/caterpillar.png"
+},
+
+"Confetti":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a random explosion of confetti on the screen. The confetti should have different colors.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/confetti.png"
+},
+
+"Easter Eggs":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a basket of easter eggs.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/eastereggs.png"
+},
+
+"Landscape":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a landscape. You should let the user choose between a DAY or NIGHT landscape. Each should have a horizon and mountains.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/landscsape.png"
+},
+
+"Global Travel Assistant":{
+    header:`Use what you've learned to code the project`,
+    task:`Make a project that helps a user decide where to travel. Ask the user if they prefer a hot or cold climate, and if they will be staying for 3 days, 7 days, or longer. Then, decide where they should travel and output the destination and its language and currency.`,
+    format:'text',
+    code:``,
+    img:"imgs/travel.png"
+},
+
+"Balloons":{
+    header:`Use what you've learned to draw the image`,
+    task:`Draw a bundle of balloons. Ask the user to decide how many balloons and what their radius should be. Draw strings connecting all the balloons to a common point.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/balloons.png"
+},
+
+"Blinking Rectangles":{
+    header:`Use what you've learned to code the program`,
+    task:`Make a program that fills the screen with many randomly colored rectangles. When a rectangle is clicked, it should change colors.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/colorblock.png"
+},
+
+"Barcode":{
+    header:`Use what you've learned to code the program`,
+    task:`Ask the user for the length of a barcode. Randomly draw white or black lines for the whole length to draw a barcode.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/barcode.png"
+},
+
+"Fireflies":{
+    header:`Use what you've learned to code the program`,
+    task:`Draw a scene with a ground, sky, and fireflies in the sky. Fireflies should appear randomly, but not on top of the ground.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/fireflies.png"
+},
+
+"Project: Tic Tac Toe":{
+    header:`Use what you've learned to code the program`,
+    task:`Create the whole game of tic tac toe. Split the canvas into a 3x3 grid. Players should take turns placing down either an 'X' or an 'O'. The first player to get 3 in a row wins.`,
+    format:'graphics',
+    code:``,
+    img:"imgs/ttt.png"
 }
-
-
-
 
 }
 
