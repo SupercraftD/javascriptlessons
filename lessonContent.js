@@ -6,7 +6,31 @@ let units = [
     ["String Operations and Methods","Arrays","Objects", "For Loops with Arrays and Objects","Challenge: Playlist Rater"],
     ["Intro to Drawing Shapes","Positioning Shapes","Colors","More Shapes","Challenge: Draw Something"],
     ["Timers","Stopping Timers","Random Numbers","Collisions and Bouncing","Challenge: Colliding Balls","Mouse Clicks","Keyboard Inputs","Challenge: Putting It All Together"],
-    ["A Ball in a Box","Raise The Flag","XY Plot","Color the Rainbow","Netherlands Flag","Ghost","Fried Egg","Snake Eyes","Concentric Circles","Growing Squares","Caterpillar","Confetti","Easter Eggs","Landscape","Global Travel Assistant","Balloons","Blinking Rectangles","Barcode","Fireflies","Project: Tic Tac Toe"]
+
+    [
+  "Smiley Face",
+  "Traffic Light",
+  "Bar Graph",
+  "Target Practice",
+  "French Flag",
+  "Robot",
+  "Ice Cream Cone",
+  "Lucky Sevens",
+  "Radiating Lines",
+  "Nested Triangles",
+  "Snowman",
+  "Starry Sky",
+  "Fruit Bowl",
+  "City Skyline",
+  "Pet Finder",
+  "Kite",
+  "Shape Changer",
+  "Music Bars",
+  "Shooting Stars",
+  "Project: Connect Four"
+]
+
+
 ];
 
 
@@ -884,164 +908,146 @@ keyUpMethod(whenKeyUp);`,
     code:``,
     img:"imgs/challengetogether.gif"
 },
-
-"A Ball in a Box":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a ball inside a box.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/ballbox.png"
-},
-
-"Raise The Flag":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a flag on a flag pole.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/raisetheflag.png"
-},
-
-"XY Plot":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a graph with a X-axis and a Y-axis, and a line. `,
-    format:'graphics',
-    code:``,
-    img:"imgs/graph.png"
-},
-
-"Color the Rainbow":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a rainbow with 7 colored stripes. `,
-    format:'graphics',
-    code:``,
-    img:"imgs/rainbow.png"
-},
-
-"Netherlands Flag":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw the flag of the Netherlands `,
-    format:'graphics',
-    code:``,
-    img:"imgs/netherlands.png"
-},
-
-"Ghost":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a ghost `,
-    format:'graphics',
-    code:``,
-    img:"imgs/ghost.png"
-},
-"Fried Egg":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a fried egg in a pan `,
-    format:'graphics',
-    code:``,
-    img:"imgs/friedegg.png"
-},
-
-"Snake Eyes":{
-    header:`Use what you've learned to code the project`,
-    task:`Roll two six-sided dice until they are both ones. Output their values after each roll. Output the number of rolls it took to reach snake eyes at the end.`,
-    format:'text',
-    code:``,
-    img:"imgs/snakeeyes.png"
-},
-
-"Concentric Circles":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw multiple concentric circles overlapping each other, alternating colors.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/concentric.png"
-},
-
-"Growing Squares":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw many squares overlapping each other, growing in size, starting from the top left corner, representing perspective.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/perspective.png"
-},
-"Caterpillar":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a caterpillar made of circles of alternating colors.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/caterpillar.png"
-},
-
-"Confetti":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a random explosion of confetti on the screen. The confetti should have different colors.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/confetti.png"
-},
-
-"Easter Eggs":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a basket of easter eggs.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/eastereggs.png"
-},
-
-"Landscape":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a landscape. You should let the user choose between a DAY or NIGHT landscape. Each should have a horizon and mountains.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/landscsape.png"
-},
-
-"Global Travel Assistant":{
-    header:`Use what you've learned to code the project`,
-    task:`Make a project that helps a user decide where to travel. Ask the user if they prefer a hot or cold climate, and if they will be staying for 3 days, 7 days, or longer. Then, decide where they should travel and output the destination and its language and currency.`,
-    format:'text',
-    code:``,
-    img:"imgs/travel.png"
-},
-
-"Balloons":{
-    header:`Use what you've learned to draw the image`,
-    task:`Draw a bundle of balloons. Ask the user to decide how many balloons and what their radius should be. Draw strings connecting all the balloons to a common point.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/balloons.png"
-},
-
-"Blinking Rectangles":{
-    header:`Use what you've learned to code the program`,
-    task:`Make a program that fills the screen with many randomly colored rectangles. When a rectangle is clicked, it should change colors.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/colorblock.png"
-},
-
-"Barcode":{
-    header:`Use what you've learned to code the program`,
-    task:`Ask the user for the length of a barcode. Randomly draw white or black lines for the whole length to draw a barcode.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/barcode.png"
-},
-
-"Fireflies":{
-    header:`Use what you've learned to code the program`,
-    task:`Draw a scene with a ground, sky, and fireflies in the sky. Fireflies should appear randomly, but not on top of the ground.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/fireflies.png"
-},
-
-"Project: Tic Tac Toe":{
-    header:`Use what you've learned to code the program`,
-    task:`Create the whole game of tic tac toe. Split the canvas into a 3x3 grid. Players should take turns placing down either an 'X' or an 'O'. The first player to get 3 in a row wins.`,
-    format:'graphics',
-    code:``,
-    img:"imgs/ttt.png"
-}
+ "Smiley Face": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a smiley face with eyes, a mouth, and a circle for the head.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Traffic Light": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a traffic light with red, yellow, and green circles inside a rectangle.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Bar Graph": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a bar graph with at least 4 bars of different heights and colors.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Target Practice": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a target made of concentric circles with alternating red and white colors.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "French Flag": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw the flag of France with vertical stripes of blue, white, and red.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Robot": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a simple robot using rectangles and circles for the body, head, and arms.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Ice Cream Cone": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw an ice cream cone with at least 2 scoops of different colors on top.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Lucky Sevens": {
+    "header": "Use what you've learned to code the project",
+    "task": "Roll two six-sided dice until their total is 7. Output each roll and display the total rolls it took to reach 7.",
+    "format": "text",
+    "code": "",
+    "img": ""
+  },
+  "Radiating Lines": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw straight lines radiating out from the center of the canvas like sun rays.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Nested Triangles": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw multiple triangles inside each other, each smaller than the last.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Snowman": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a snowman with three circles stacked on top of each other, plus eyes, a carrot nose, and a hat.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Starry Sky": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a night sky with many randomly placed stars of different sizes.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Fruit Bowl": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a bowl with at least 3 different fruits inside, each a different color.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "City Skyline": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a city skyline with rectangles for buildings. Include windows that light up at night.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Pet Finder": {
+    "header": "Use what you've learned to code the project",
+    "task": "Make a program that helps a user choose a pet. Ask if they want a small, medium, or large pet, and if they prefer low or high energy. Suggest an animal that fits their choice.",
+    "format": "text",
+    "code": "",
+    "img": ""
+  },
+  "Kite": {
+    "header": "Use what you've learned to draw the image",
+    "task": "Draw a kite with a diamond shape and a string with bows tied along it.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Shape Changer": {
+    "header": "Use what you've learned to code the program",
+    "task": "Fill the canvas with shapes. When the user clicks on a shape, it should switch to a different shape (circle → square → triangle → circle).",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Music Bars": {
+    "header": "Use what you've learned to code the program",
+    "task": "Ask the user for a number between 5 and 20. Draw that many vertical rectangles with random heights to look like music bars.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Shooting Stars": {
+    "header": "Use what you've learned to code the program",
+    "task": "Draw a night sky and animate stars that streak across the screen like shooting stars.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  },
+  "Project: Connect Four": {
+    "header": "Use what you've learned to code the program",
+    "task": "Create the game of Connect Four. Draw a 7x6 grid. Players take turns dropping red or yellow circles into the columns until one player gets four in a row.",
+    "format": "graphics",
+    "code": "",
+    "img": ""
+  }
 
 }
 
