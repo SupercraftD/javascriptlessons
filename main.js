@@ -30,11 +30,17 @@ function switchAssignment(u,l){
   if (lessonContents[units[u][l]].format == "text"){
     document.getElementById("console").style.display = "block";
     format = "text";
+    for (e of document.getElementsByTagName("canvas")){
+      e.style.display = "none";
+    }
   }else{
     document.getElementById("console").style.display = "none";
     format = "graphics";
     objects={}
     images=[]
+    for (e of document.getElementsByTagName("canvas")){
+      e.style.display = "block";
+    }
   }
 
 }
